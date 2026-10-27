@@ -9,7 +9,9 @@ You will implement the functions in recommender.py:
 - recommend_songs
 """
 
-from recommender import load_songs, recommend_songs
+from src.recommender import load_songs, recommend_songs, MAX_SCORE
+
+LINE_WIDTH = 64
 
 
 # User taste profiles covering a range of energy levels, moods, and acoustic preferences.
@@ -54,20 +56,41 @@ USER_PROFILES = {
 }
 
 
+def print_profile_header(profile_name: str, user_prefs: dict) -> None:
+    """Prints a boxed header with the profile name and a one-line summary of its preferences."""
+    acoustic = "acoustic" if user_prefs["likes_acoustic"] else "non-acoustic"
+    summary = (
+        f"{user_prefs['genre']} | {user_prefs['mood']} | energy {user_prefs['energy']:.2f} | "
+        f"{acoustic} | valence {user_prefs['valence']:.2f}"
+    )
+    print("=" * LINE_WIDTH)
+    print(f"  {profile_name}")
+    print(f"  {summary}")
+    print("=" * LINE_WIDTH)
+
+
+def print_recommendation(rank: int, song: dict, score: float, explanation: str) -> None:
+    """Prints one ranked song with its score and each scoring reason on its own line."""
+    title = f"{rank}. {song['title']} - {song['artist']}"
+    score_text = f"{score:.2f} / {MAX_SCORE:.0f}"
+    print(f"{title:<{LINE_WIDTH - len(score_text)}}{score_text}")
+    for reason in explanation.split("; "):
+        print(f"     - {reason}")
+    print()
+
+
 def main() -> None:
     songs = load_songs("data/songs.csv")
 
     for profile_name, user_prefs in USER_PROFILES.items():
         recommendations = recommend_songs(user_prefs, songs, k=5)
 
-        print(f"\n=== {profile_name} ===")
-        print(f"Preferences: {user_prefs}\n")
-        for rec in recommendations:
-            # Each item is (song, score, explanation)
-            song, score, explanation = rec
-            print(f"{song['title']} - Score: {score:.2f}")
-            print(f"Because: {explanation}")
-            print()
+        print()
+        print_profile_header(profile_name, user_prefs)
+        print()
+        # Each item is (song, score, explanation)
+        for rank, (song, score, explanation) in enumerate(recommendations, start=1):
+            print_recommendation(rank, song, score, explanation)
 
 
 if __name__ == "__main__":
