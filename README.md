@@ -52,6 +52,10 @@ tempo_bpm: float
 valence: float
 danceability: float
 acousticness: float
+
+The system will first take in the user's preferences. After that, it will apply the above scoring system to each song and compare it to the user's preferences. After that, the top 5 songs will be shown. If a user prefers the categories with lower weights, they may see less songs that they like. There's a bias toward energy.
+
+Perhaps the user can ask to see more recommendations.
 ---
 ## Getting Started
 
