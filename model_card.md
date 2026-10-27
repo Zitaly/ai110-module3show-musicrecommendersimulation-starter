@@ -2,73 +2,44 @@
 
 ## 1. Model Name  
 
-Give your model a short, descriptive name.  
-Example: **VibeFinder 1.0**  
+AGSRecommender
+(Another Generic Song Recommender)
 
 ---
 
 ## 2. Intended Use  
 
-Describe what your recommender is designed to do and who it is for. 
+Describe what your recommender is designed to do and who it is for.  
 
-Prompts:  
-
-- What kind of recommendations does it generate  
-- What assumptions does it make about the user  
-- Is this for real users or classroom exploration  
-
+This recommender, intended for classroom exploration, is designed to recommend songs based primarily on energy, mood, and acousticness.
 ---
 
 ## 3. How the Model Works  
 
 Explain your scoring approach in simple language.  
 
-Prompts:  
-
-- What features of each song are used (genre, energy, mood, etc.)  
-- What user preferences are considered  
-- How does the model turn those into a score  
-- What changes did you make from the starter logic  
-
-Avoid code here. Pretend you are explaining the idea to a friend who does not program.
-
+The program looks at and scores in the order of energy, mood, acousticness, genre, and valence. These scores are multiplied by their weights anda added up to a max of 10. A high score means a good recommendation.
 ---
 
 ## 4. Data  
 
 Describe the dataset the model uses.  
-
-Prompts:  
-
-- How many songs are in the catalog  
-- What genres or moods are represented  
-- Did you add or remove data  
-- Are there parts of musical taste missing in the dataset  
-
+ 
+The dataset contains 18 songs, and it consists of a broad range of genres. Because of how broad musical genres are, even excluding sub-genres, many tastes aren't represented.
 ---
 
 ## 5. Strengths  
 
-Where does your system seem to work well  
+Where does your system seem to work well   
 
-Prompts:  
-
-- User types for which it gives reasonable results  
-- Any patterns you think your scoring captures correctly  
-- Cases where the recommendations matched your intuition  
-
+The system does well at broadly recommending music for a specific user. The genres and energy tend to match what someone may want.
 ---
 
 ## 6. Limitations and Bias 
 
 Where the system struggles or behaves unfairly. 
 
-Prompts:  
-
-- Features it does not consider  
-- Genres or moods that are underrepresented  
-- Cases where the system overfits to one preference  
-- Ways the scoring might unintentionally favor some users  
+The dataset has uneven representation. Some tastes have more represenation that other tastes, and these overrepresented tastes will consistently have higher scores than underrepresented ones. As a result, mainstream music is favored over niche music, and this in turn favors those who like mainstream music.
 
 ---
 
@@ -76,15 +47,9 @@ Prompts:
 
 How you checked whether the recommender behaved as expected. 
 
-Prompts:  
+High-energy pop fan prefers non-acoustic, happy songs; chill lofi studier prefers low energy, acoustic songs that have some positivity; intense rock head likes extremely high energy with low positivity; and the melancholic classical listener wants low energy and low positivity.
 
-- Which user profiles you tested  
-- What you looked for in the recommendations  
-- What surprised you  
-- Any simple tests or comparisons you ran  
-
-No need for numeric metrics unless you created some.
-
+The results didn't really surprise me.
 ---
 
 ## 8. Future Work  
@@ -98,6 +63,7 @@ Prompts:
 - Improving diversity among the top results  
 - Handling more complex user tastes  
 
+I would improve the model by increasing the nuance of how things are judged. This includes addressing sub-genres, like pop vs indie pop, and going for targets instead of simple yes/no decisions. Additionally, I would add more points to the dataset to remove the uneven representation and generate better test data.
 ---
 
 ## 9. Personal Reflection  
@@ -109,3 +75,9 @@ Prompts:
 - What you learned about recommender systems  
 - Something unexpected or interesting you discovered  
 - How this changed the way you think about music recommendation apps  
+
+My biggest learning moment during this project was seeing how quickly AI can work at testing, creating, gathering data, and interpreting data when a plan is properly made and outlined.
+
+Simple algorithms involve a lot of complexity that can still result in them being wrong. I think the training is a constant, complex process that can't ever end without everything falling apart.
+
+I would try fixing the current issues and adding real songs.
