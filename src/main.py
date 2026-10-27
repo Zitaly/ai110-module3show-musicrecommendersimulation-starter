@@ -80,6 +80,7 @@ def print_recommendation(rank: int, song: dict, score: float, explanation: str) 
 
 
 def main() -> None:
+    """Loads the song catalog and prints the top 5 recommendations for each user profile."""
     songs = load_songs("data/songs.csv")
 
     for profile_name, user_prefs in USER_PROFILES.items():

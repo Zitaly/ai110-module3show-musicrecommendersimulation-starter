@@ -45,13 +45,16 @@ class Recommender:
     Required by tests/test_recommender.py
     """
     def __init__(self, songs: List[Song]):
+        """Stores the catalog of songs to recommend from."""
         self.songs = songs
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
+        """Returns the top k songs for the user, highest score first."""
         # TODO: Implement recommendation logic
         return self.songs[:k]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
+        """Returns a human-readable explanation of why the song suits the user."""
         # TODO: Implement explanation logic
         return "Explanation placeholder"
 
